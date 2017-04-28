@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sun</groupId>
-	<artifactId>DubboTracer</artifactId>
+	<artifactId>DubboProvider</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DubboTracer</name>
+	<name>DubboProvider</name>
 	<url>http://maven.apache.org</url>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -86,11 +86,16 @@
 		    <groupId>org.aspectj</groupId>  
 		    <artifactId>aspectjweaver</artifactId>
 		    <scope>runtime</scope>  
-		</dependency>  
+		</dependency>
+		<dependency>
+			<groupId>com.xiaoleilu</groupId>
+			<artifactId>hutool-crypto</artifactId>
+			<version>3.0.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>DubboTracer</finalName>
+		<finalName>DubboProvider</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

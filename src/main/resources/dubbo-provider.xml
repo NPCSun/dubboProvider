@@ -15,29 +15,23 @@
 	<bean class="com.sun.util.ApplicationContextHolder"/>
     <dubbo:application name="demo-provider" owner="sun" organization="huoq"/>
 
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-
-    <dubbo:protocol name="dubbo" dispatcher="connection" iothreads="5" accesslog="false" serialization="hessian2" port="20800" threadpool="fixed" threads="2" />
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="6000"/>
+	<dubbo:provider timeout="6000"/>
+	<dubbo:consumer timeout="6000"/>
+    <dubbo:protocol name="dubbo"  dispatcher="connection" iothreads="5" accesslog="false" serialization="hessian2" port="20801" threadpool="fixed" threads="2" />
+    
     <bean id="aService" class="com.sun.service.AServiceImpl"/>
     <dubbo:service interface="com.sun.service.AService" ref="aService" connections="50" actives="5000" cluster="failover"/>
- 	<dubbo:reference id="aServiceDubbo" interface="com.sun.service.AService"/>
+ 	
  	
  	<bean id="bService" class="com.sun.service.BServiceImpl"/>
     <dubbo:service interface="com.sun.service.BService" ref="bService" connections="50" actives="5000" cluster="failover"/>
- 	<dubbo:reference id="bServiceDubbo" interface="com.sun.service.BService"/>
  	
- 	<bean id="cService" class="com.sun.service.CServiceImpl"/>
-    <dubbo:service interface="com.sun.service.CService" ref="cService" connections="50" actives="5000" cluster="failover"/>
- 	<dubbo:reference id="cServiceDubbo" interface="com.sun.service.CService"/>
+    <dubbo:reference id="cServiceDubbo" interface="com.sun.service.CService" />
  	
  	<bean id="traceFilter" class="com.sun.dubbo.filter.TraceFilter" />
 	<aop:config>
 		<aop:pointcut id="tracePoint" expression="execution(* com.sun.service..*.*(..))" />
 		<aop:advisor pointcut-ref="tracePoint" advice-ref="traceFilter" />
-	</aop:config>
-	<bean id="traceControllerFilter" class="com.sun.controller.filter.ControllerFilter" />
-	<aop:config>
-		<aop:pointcut id="controllerPoint" expression="execution(* com.sun.controller..*.*(..))" />
-		<aop:advisor pointcut-ref="controllerPoint" advice-ref="traceControllerFilter" />
 	</aop:config>
 </beans>
