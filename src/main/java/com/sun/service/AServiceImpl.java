@@ -7,7 +7,7 @@ public class AServiceImpl implements AService {
 
 	public void sayHi(String name){
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
