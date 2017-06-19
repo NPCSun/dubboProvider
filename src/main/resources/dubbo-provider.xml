@@ -15,7 +15,7 @@
 	<bean class="com.sun.util.ApplicationContextHolder"/>
     <dubbo:application name="demo-provider" owner="sun" organization="huoq"/>
 
-    <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="6000" session="6000"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="6000"/>
 	<dubbo:provider timeout="6000"/>
 	<dubbo:consumer timeout="6000"/>
     <dubbo:protocol name="dubbo"  dispatcher="connection" iothreads="5" accesslog="false" serialization="hessian2" port="20801" threadpool="fixed" threads="2" />
